@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
-    backgroundColor: colors.LIGHT,
+    backgroundColor: colors.POWDER,
     position: 'absolute',
     top: 30,
     left: 10,

@@ -8,7 +8,7 @@ const NoteButtons = ({name,onPress}) => {
     <TouchableHighlight 
     onPress={onPress} 
     style={styles.touch} 
-    underlayColor={colors.LIGHTGREY} 
+    underlayColor={colors.LIGHTGREY}
     activeOpacity={0.2}>
     <IconAntDesign
       name={name}

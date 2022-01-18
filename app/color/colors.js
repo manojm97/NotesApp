@@ -6,4 +6,10 @@ export default {
   LIGHTWHITE: '#f5f5dc',
   GREY: '#808080',
   LIGHTGREY:'#c0c0c0',
+  CHIFFON:'#FBFAF2',
+  COTTON:'#FBFBF9',
+  VIVID:'#F8F8F4',
+  POWDER:'#F2F2F1',
+  SMOKE:'#E7EAEA',
+  GHOST:'#45646',
 };

@@ -14,41 +14,60 @@ import NoteButtons from '../components/NoteButtons';
 import NoteInput from '../components/NoteInput';
 import Notes from '../components/Notes';
 
-const NoteScreen = () => {
+const NoteScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [notes, setNotes] = useState([]);
 
   const findNotes = async () => {
-    const result =  await AsyncStorage.getItem('notes');
-    if(result!== null) setNotes(JSON.parse(result));
+    const result = await AsyncStorage.getItem('notes');
+    if (result !== null) setNotes(JSON.parse(result));
   };
 
   useEffect(() => {
+    // AsyncStorage.clear();
     findNotes();
   }, []);
 
   const handleOnSubmit = async (title, content) => {
     const note = {id: Date.now(), title, content, time: Date.now()};
-    const updatedNotes = [...notes,note];
+    const updatedNotes = [...notes, note];
     setNotes(updatedNotes);
-    await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes))
+    await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes));
+  };
+
+
+  const openNote = (note) => {
+    navigation.navigate('NoteDetails', { note });
   };
 
   return (
     <>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.LIGHT} />
+      <StatusBar barStyle="dark-content" backgroundColor={colors.POWDER} />
       <View style={styles.container}>
         <Text style={styles.header}>Notes</Text>
-        <FlatList 
-          data={notes} 
+        <FlatList
+          data={notes}
+          numColumns={2}
+          columnWrapperStyle={{
+            justifyContent: 'space-between',
+            marginBottom: 15,
+          }}
           keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => <Notes item={item} /> } 
+          renderItem={({item}) => (
+            <Notes onPress={() => openNote(item)} item={item} />
+          )}
         />
-        <View style={[StyleSheet.absoluteFillObject,styles.emptyHeaderContainer]}>
-          <Text style={styles.emptyHeader}>Add Notes</Text>      
-        </View>
-        <NoteButtons name="plus" onPress={() => setModalVisible(true)} />
+        {!notes.length ? (
+          <View
+            style={[
+              StyleSheet.absoluteFillObject,
+              styles.emptyHeaderContainer,
+            ]}>
+            <Text style={styles.emptyHeader}>Add Notes</Text>
+          </View>
+        ) : null}
       </View>
+      <NoteButtons name="plus" onPress={() => setModalVisible(true)} />
       <NoteInput
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
@@ -60,10 +79,10 @@ const NoteScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
     paddingVertical: 20,
     flex: 1,
-    backgroundColor: colors.LIGHT,
+    backgroundColor: colors.POWDER,
     zIndex: 1,
   },
   header: {
@@ -87,3 +106,4 @@ const styles = StyleSheet.create({
 });
 
 export default NoteScreen;
+

@@ -20,13 +20,21 @@ const NoteInput = ({visible, onClose, onSubmit}) => {
         if(valueOf === 'content') setContent(text);
     }
 
-    const handleSave = () => { 
+    const handleBack = () => { 
         if(!title.trim() && !content.trim()) return onClose();
         onSubmit(title,content);
         setTitle('');
         setContent('');
         onClose();
+      //  console.log(title,content)
     }
+
+    const handleSave = () => { 
+      Keyboard.dismiss();
+    //  <SaveButton style={{display:'none'}}/>
+      onSubmit(title,content);
+     // console.log(title,content)
+  }
 
   return (
       <Modal visible={visible} animationType='fade' >
@@ -48,9 +56,6 @@ const NoteInput = ({visible, onClose, onSubmit}) => {
           value={content}
           onChangeText={text => handleOnChangeText(text, 'content')}
          />
-          <View style={styles.deleteButton}>
-            <NoteButtons name="delete"/>
-          </View>
         </View>
         <View style={StyleSheet.absoluteFillObject}>
          {title.trim() || content.trim() ? (
@@ -61,7 +66,7 @@ const NoteInput = ({visible, onClose, onSubmit}) => {
             ) : null}
             <BackButton 
               name="left" 
-              onPress={handleSave}
+              onPress={handleBack}
             />
           </View>
         <TouchableWithoutFeedback onPress={handleModalClose}>
@@ -74,7 +79,7 @@ const NoteInput = ({visible, onClose, onSubmit}) => {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
-        paddingTop: 60,     
+        paddingTop: 60,    
       },
       title: {
         borderBottomColor : colors.LIGHTGREY ,
@@ -82,6 +87,7 @@ const styles = StyleSheet.create({
         fontSize : 30,
         fontWeight: 'bold',
         fontFamily: 'sans-serif-bold',
+        color: colors.DARK,
       },
       content: {
         fontSize : 15,
@@ -90,13 +96,8 @@ const styles = StyleSheet.create({
     emptySpace:{
         flex: 1,
         zIndex: -1,
+        backgroundColor: colors.POWDER, 
     },
-    deleteButton:{
-        position: 'absolute',
-        top: 750,
-        right: 20,
-        padding: 10,
-      },
 });
 
 export default NoteInput;
