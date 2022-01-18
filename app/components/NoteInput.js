@@ -3,7 +3,6 @@ import {Keyboard, Modal, StyleSheet, Text, TextInput, TouchableWithoutFeedback, 
 import colors from '../color/colors';
 import BackButton from './BackButton';
 import SaveButton from './SaveButton';
-import NoteButtons from './NoteButtons';
 
 
 const NoteInput = ({visible, onClose, onSubmit}) => {
@@ -21,19 +20,16 @@ const NoteInput = ({visible, onClose, onSubmit}) => {
     }
 
     const handleBack = () => { 
-        if(!title.trim() && !content.trim()) return onClose();
+        setTitle('');
+        setContent('');
+        onClose();
+    }
+
+    const handleSave = () => { 
         onSubmit(title,content);
         setTitle('');
         setContent('');
         onClose();
-      //  console.log(title,content)
-    }
-
-    const handleSave = () => { 
-      Keyboard.dismiss();
-    //  <SaveButton style={{display:'none'}}/>
-      onSubmit(title,content);
-     // console.log(title,content)
   }
 
   return (

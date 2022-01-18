@@ -13,20 +13,11 @@ import colors from '../color/colors';
 import NoteButtons from '../components/NoteButtons';
 import NoteInput from '../components/NoteInput';
 import Notes from '../components/Notes';
+import { useNotes } from '../contexts/NoteProvider';
 
 const NoteScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [notes, setNotes] = useState([]);
-
-  const findNotes = async () => {
-    const result = await AsyncStorage.getItem('notes');
-    if (result !== null) setNotes(JSON.parse(result));
-  };
-
-  useEffect(() => {
-    // AsyncStorage.clear();
-    findNotes();
-  }, []);
+  const {notes,setNotes} = useNotes();
 
   const handleOnSubmit = async (title, content) => {
     const note = {id: Date.now(), title, content, time: Date.now()};
