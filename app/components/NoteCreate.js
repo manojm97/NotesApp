@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Keyboard, Modal, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
 import colors from '../color/colors';
 import BackButton from './BackButton';
 import SaveButton from './SaveButton';
 
 
-const NoteInput = ({visible, onClose, onSubmit}) => {
+const NoteCreate = ({visible, onClose, onSubmit}) => {
 
     const [title,setTitle] = useState('');
     const [content,setContent] = useState('');
-
+  
     const handleModalClose = () => {
         Keyboard.dismiss();
       };
+    
 
     const handleOnChangeText = (text, valueOf) => {
         if(valueOf === 'title') setTitle(text);
@@ -23,14 +24,14 @@ const NoteInput = ({visible, onClose, onSubmit}) => {
         setTitle('');
         setContent('');
         onClose();
-    }
+    };
 
     const handleSave = () => { 
         onSubmit(title,content);
         setTitle('');
-        setContent('');
+        setContent(''); 
         onClose();
-  }
+    };
 
   return (
       <Modal visible={visible} animationType='fade' >
@@ -96,4 +97,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NoteInput;
+export default NoteCreate;

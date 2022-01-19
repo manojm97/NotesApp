@@ -1,10 +1,10 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import NoteDetails from './app/components/NoteDetails';
-import NoteScreen from './app/screens/NoteScreen';
+import NoteDetails from './components/NoteDetails';
+import NoteScreen from './screens/NoteScreen';
 import { LogBox } from 'react-native';
-import NoteProvider from './app/contexts/NoteProvider';
+import NoteProvider from './contexts/NoteProvider';
 
 const Stack = createStackNavigator();
 

@@ -11,7 +11,6 @@ const NoteProvider = ({children}) => {
   };
 
   useEffect(() => {
-      //AsyncStorage.clear();
     findNotes();
   }, []);
 

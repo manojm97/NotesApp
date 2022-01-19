@@ -11,13 +11,25 @@ import {
 } from 'react-native';
 import colors from '../color/colors';
 import NoteButtons from '../components/NoteButtons';
-import NoteInput from '../components/NoteInput';
+import NoteCreate from '../components/NoteCreate';
 import Notes from '../components/Notes';
 import { useNotes } from '../contexts/NoteProvider';
+
+const reverseData = data => {
+  return data.sort((a, b) => {
+    const aInt = parseInt(a.time);
+    const bInt = parseInt(b.time);
+    if (aInt < bInt) return 1;
+    if (aInt == bInt) return 0;
+    if (aInt > bInt) return -1;
+  });
+};
 
 const NoteScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const {notes,setNotes} = useNotes();
+
+  const reverseNotes = reverseData(notes);
 
   const handleOnSubmit = async (title, content) => {
     const note = {id: Date.now(), title, content, time: Date.now()};
@@ -37,7 +49,7 @@ const NoteScreen = ({navigation}) => {
       <View style={styles.container}>
         <Text style={styles.header}>Notes</Text>
         <FlatList
-          data={notes}
+          data={reverseNotes}
           numColumns={2}
           columnWrapperStyle={{
             justifyContent: 'space-between',
@@ -59,7 +71,7 @@ const NoteScreen = ({navigation}) => {
         ) : null}
       </View>
       <NoteButtons name="plus" onPress={() => setModalVisible(true)} />
-      <NoteInput
+      <NoteCreate
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         onSubmit={handleOnSubmit}
@@ -93,7 +105,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: -1,
-  },
+  }, 
 });
 
 export default NoteScreen;
