@@ -1,19 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   FlatList,
   StatusBar,
   StyleSheet,
   Text,
-  TouchableHighlightComponent,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import colors from '../color/colors';
 import NoteButtons from '../components/NoteButtons';
 import NoteCreate from '../components/NoteCreate';
 import Notes from '../components/Notes';
-import { useNotes } from '../contexts/NoteProvider';
+import {useNotes} from '../contexts/NoteProvider';
 
 const reverseData = data => {
   return data.sort((a, b) => {
@@ -27,7 +25,7 @@ const reverseData = data => {
 
 const NoteScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const {notes,setNotes} = useNotes();
+  const {notes, setNotes} = useNotes();
 
   const reverseNotes = reverseData(notes);
 
@@ -38,9 +36,8 @@ const NoteScreen = ({navigation}) => {
     await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes));
   };
 
-
-  const openNote = (note) => {
-    navigation.navigate('NoteDetails', { note });
+  const openNote = note => {
+    navigation.navigate('NoteDetails', {note});
   };
 
   return (
@@ -105,8 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: -1,
-  }, 
+  },
 });
 
 export default NoteScreen;
-

@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
 import colors from '../color/colors';
 import NoteButtons from './NoteButtons';
-import NoteCreate from './NoteCreate';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNotes} from '../contexts/NoteProvider';
 import {TextInput} from 'react-native-gesture-handler';
 import SaveButton from './SaveButton';
 
-const NoteDetails = (props) => {
+const NoteDetails = props => {
   const [note, setNote] = useState(props.route.params.note);
   const {setNotes} = useNotes();
 
@@ -43,8 +42,6 @@ const NoteDetails = (props) => {
     );
   };
 
-
-
   const handleUpdateNotes = async (text, value) => {
     const result = await AsyncStorage.getItem('notes');
     let notes = [];
@@ -52,15 +49,15 @@ const NoteDetails = (props) => {
 
     const newNotes = notes.filter(n => {
       if (n.id === note.id) {
-        if(value === 'title') {
-            n.title = text;
+        if (value === 'title') {
+          n.title = text;
         }
-        if(value === 'content') {
-            n.content = text;
+        if (value === 'content') {
+          n.content = text;
         }
         n.time = Date.now();
         //to update notes on notes state change with title and content
-         setNote(n);
+        setNote(n);
       }
       return n;
     });
@@ -69,11 +66,9 @@ const NoteDetails = (props) => {
     await AsyncStorage.setItem('notes', JSON.stringify(newNotes));
   };
 
-
-  const handleGoBack = () => { 
+  const handleGoBack = () => {
     props.navigation.goBack();
   };
-
 
   return (
     <>
@@ -84,14 +79,14 @@ const NoteDetails = (props) => {
           numberOfLines={2}
           blurOnSubmit={true}
           style={styles.title}
-          value={note.title}
+          defaultValue={note.title}
           onChangeText={text => handleUpdateNotes(text, 'title')}
-          />
-        <TextInput 
-        multiline 
-        style={styles.content}
-        value={note.content}
-        onChangeText={text => handleUpdateNotes(text, 'content')}
+        />
+        <TextInput
+          multiline
+          style={styles.content}
+          defaultValue={note.content}
+          onChangeText={text => handleUpdateNotes(text, 'content')}
         />
       </ScrollView>
       <View style={styles.deleteButton}>

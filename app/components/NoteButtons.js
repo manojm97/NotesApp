@@ -3,19 +3,19 @@ import {TouchableHighlight, StyleSheet, Text, View} from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../color/colors';
 
-const NoteButtons = ({name,onPress}) => {
+const NoteButtons = ({name, onPress}) => {
   return (
-    <TouchableHighlight 
-    onPress={onPress} 
-    style={styles.touch} 
-    underlayColor={colors.LIGHTGREY}
-    activeOpacity={0.2}>
-    <IconAntDesign
-      name={name}
-      size={25}
-      color={colors.LIGHTWHITE}
-      style={styles.icon}
-    />
+    <TouchableHighlight
+      onPress={onPress}
+      style={styles.touch}
+      underlayColor={colors.LIGHTGREY}
+      activeOpacity={0.2}>
+      <IconAntDesign
+        name={name}
+        size={25}
+        color={colors.LIGHTWHITE}
+        style={styles.icon}
+      />
     </TouchableHighlight>
   );
 };

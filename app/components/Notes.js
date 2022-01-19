@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import colors from '../color/colors';
 
 const Notes = ({item, onPress}) => {
@@ -33,7 +27,7 @@ const width = Dimensions.get('window').width - 20;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.SMOKE,
+    backgroundColor: colors.COTTON,
     width: width / 2 - 10,
     padding: 15,
     borderRadius: 10,
