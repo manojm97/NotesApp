@@ -1,6 +1,6 @@
 # React Native NotesApp
 
-This is a sample notes app built using react native.
+This is a simple notes app built using react native.
 
 ## Demo
 
@@ -16,7 +16,7 @@ Need Mac and install Xcode to setup an app for iOS device and can only run on Si
 
 ## Using react-native-cli
 
-### `npx reat-native-satrt`
+### `npx react-native start`
 
 Runs metro using node.
 This is needed to run the app from development server either in simulator or physical device on Android.
