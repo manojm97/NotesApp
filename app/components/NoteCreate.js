@@ -1,3 +1,4 @@
+import {CurrentRenderContext} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   Keyboard,
@@ -38,8 +39,9 @@ const NoteCreate = ({visible, onClose, onSubmit}) => {
     onClose();
   };
 
+
   return (
-    <Modal visible={visible} animationType="fade">
+    <Modal visible={visible} animationType="fade" onRequestClose={handleBack}>
       <View style={styles.container}>
         <TextInput
           multiline
@@ -56,6 +58,8 @@ const NoteCreate = ({visible, onClose, onSubmit}) => {
           placeholder="Content"
           style={styles.content}
           value={content}
+          autoFocus={true}
+          showSoftInputOnFocus={true}
           onChangeText={text => handleOnChangeText(text, 'content')}
         />
       </View>

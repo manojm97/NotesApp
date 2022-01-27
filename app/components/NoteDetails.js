@@ -8,14 +8,13 @@ import {TextInput} from 'react-native-gesture-handler';
 import SaveButton from './SaveButton';
 
 const NoteDetails = props => {
-  const [note, setNote] = useState(props.route.params.note);
+  const [note] = useState(props.route.params.note);
   const {setNotes} = useNotes();
 
   const deleteNote = async () => {
     const result = await AsyncStorage.getItem('notes');
     let notes = [];
     if (result !== null) notes = JSON.parse(result);
-
     const newNotes = notes.filter(n => n.id !== note.id);
     setNotes(newNotes);
     await AsyncStorage.setItem('notes', JSON.stringify(newNotes));
@@ -46,7 +45,6 @@ const NoteDetails = props => {
     const result = await AsyncStorage.getItem('notes');
     let notes = [];
     if (result !== null) notes = JSON.parse(result);
-
     const newNotes = notes.filter(n => {
       if (n.id === note.id) {
         if (value === 'title') {
@@ -56,8 +54,6 @@ const NoteDetails = props => {
           n.content = text;
         }
         n.time = Date.now();
-        //to update notes on notes state change with title and content
-        setNote(n);
       }
       return n;
     });

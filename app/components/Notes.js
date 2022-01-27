@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.COTTON,
     width: width / 2 - 10,
-    padding: 15,
+    padding: 10,
     borderRadius: 10,
   },
   title: {

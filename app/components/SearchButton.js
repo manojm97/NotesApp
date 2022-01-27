@@ -1,17 +1,18 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
-import IconAntDesign from 'react-native-vector-icons/AntDesign';
+//import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../color/colors';
 
-const SaveButton = ({name, onPress}) => {
+const SearchButton = ({name, onPress}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={styles.touch}
       activeOpacity={0.2}>
-      <IconAntDesign
+      <Icon
         name={name}
-        size={28}
+        size={25}
         color={colors.GREY}
         style={styles.icon}
       />
@@ -27,12 +28,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.POWDER,
     position: 'absolute',
     top: 30,
-    left: 280,
+    left: 240,
     padding: 1,
   },
   icon: {
     width: 30,
     height: 30,
+  //  color:colors.DARK,
     position: 'absolute',
     top: 15,
     left: 12,
@@ -40,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SaveButton;
+export default SearchButton;
