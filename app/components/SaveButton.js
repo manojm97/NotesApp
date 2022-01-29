@@ -1,18 +1,19 @@
+import { useTheme } from '@react-navigation/native';
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-import colors from '../color/colors';
 
 const SaveButton = ({name, onPress}) => {
+  
+  const {colors} = useTheme();
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.touch}
       activeOpacity={0.2}>
       <IconAntDesign
         name={name}
-        size={28}
-        color={colors.GREY}
+        size={29}
+        color={colors.text}
         style={styles.icon}
       />
     </TouchableOpacity>
@@ -20,22 +21,10 @@ const SaveButton = ({name, onPress}) => {
 };
 
 const styles = StyleSheet.create({
-  touch: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    backgroundColor: colors.POWDER,
-    position: 'absolute',
-    top: 30,
-    left: 280,
-    padding: 1,
-  },
   icon: {
-    width: 30,
-    height: 30,
     position: 'absolute',
-    top: 15,
-    left: 12,
+    top: 50,
+    right: 70,
     padding: 1,
   },
 });

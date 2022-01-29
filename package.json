@@ -17,6 +17,7 @@
     "@types/react-native": "^0.66.15",
     "react": "17.0.2",
     "react-native": "0.66.4",
+    "react-native-event-listeners": "^1.0.7",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-keyboard-listener": "^1.1.0",
     "react-native-safe-area-context": "^3.3.2",

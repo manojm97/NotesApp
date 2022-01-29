@@ -1,7 +1,7 @@
 export default {
   DARK: '#1e1e1e',
   LIGHT: '#FFF',
-  PRIMARY: '#ee6e73',
+  PRIMARY: 'teal',
   ERROR: '#ff0000',
   LIGHTWHITE: '#f5f5dc',
   GREY: '#808080',
@@ -12,4 +12,5 @@ export default {
   POWDER: '#F2F2F1',
   SMOKE: '#E7EAEA',
   GHOST: '#45646',
+  LIGHTBLACK: '#333333',
 };

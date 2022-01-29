@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
-import colors from '../color/colors';
+import {StyleSheet, View, ScrollView, Alert} from 'react-native';
 import NoteButtons from './NoteButtons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNotes} from '../contexts/NoteProvider';
 import {TextInput} from 'react-native-gesture-handler';
 import SaveButton from './SaveButton';
+import { useTheme } from '@react-navigation/native';
+import colors from '../color/colors';
 
 const NoteDetails = props => {
   const [note] = useState(props.route.params.note);
   const {setNotes} = useNotes();
 
+  const {colors} = useTheme();
+  
   const deleteNote = async () => {
     const result = await AsyncStorage.getItem('notes');
     let notes = [];
@@ -32,7 +35,7 @@ const NoteDetails = props => {
         },
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel'),
+          onPress: () => {},
         },
       ],
       {
@@ -68,19 +71,20 @@ const NoteDetails = props => {
 
   return (
     <>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={[{backgroundColor:colors.card},styles.container]}>
         <TextInput
           multiline
           maxLength={30}
           numberOfLines={2}
           blurOnSubmit={true}
-          style={styles.title}
+          style={[{color:colors.text},styles.title]}
           defaultValue={note.title}
           onChangeText={text => handleUpdateNotes(text, 'title')}
         />
         <TextInput
           multiline
-          style={styles.content}
+          style={[{color:colors.text},styles.content]}
+         // autoFocus={true}
           defaultValue={note.content}
           onChangeText={text => handleUpdateNotes(text, 'content')}
         />
@@ -97,25 +101,20 @@ const NoteDetails = props => {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     paddingHorizontal: 25,
     paddingTop: 80,
   },
   title: {
-    borderBottomColor: colors.LIGHTGREY,
+    borderBottomColor: '#c0c0c0',
     borderBottomWidth: 1,
     fontSize: 30,
     fontWeight: 'bold',
     fontFamily: 'sans-serif-bold',
-    color: colors.DARK,
   },
   content: {
     fontSize: 15,
     fontFamily: 'sans-serif',
-  },
-  editButton: {
-    position: 'absolute',
-    right: -1,
-    bottom: 100,
   },
   deleteButton: {
     position: 'absolute',

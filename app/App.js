@@ -1,21 +1,46 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
+import {DarkTheme, DefaultTheme, NavigationContainer, useTheme} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
 import NoteDetails from './components/NoteDetails';
 import NoteScreen from './screens/NoteScreen';
-import {LogBox} from 'react-native';
+import {Appearance, LogBox, StatusBar} from 'react-native';
 import NoteProvider from './contexts/NoteProvider';
+import { EventRegister } from 'react-native-event-listeners';
+import NoteCreate from './components/NoteCreate';
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [darkApp,setDarkApp] = useState(false);
+  const appTheme = darkApp ? DarkTheme : DefaultTheme;
+
+  const {colors} = useTheme();
+  const colorScheme = Appearance.getColorScheme();
+
+  useEffect(() => {
+  
+    if(colorScheme == "dark") {
+    setDarkApp(true);
+    }
+
+    let eventListener = EventRegister.addEventListener(
+      'changeThemeEvent',
+       (data) => {
+         setDarkApp(data);
+      });
+    return () => {
+      EventRegister.removeEventListener(eventListener);
+    };
+  }, []);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={appTheme}>
       <NoteProvider>
         <Stack.Navigator
           screenOptions={{headerTitle: '', headerTransparent: true}}>
           <Stack.Screen component={NoteScreen} name="NoteScreen" />
           <Stack.Screen component={NoteDetails} name="NoteDetails" />
+          <Stack.Screen component={NoteCreate} name="NoteCreate" />
         </Stack.Navigator>
       </NoteProvider>
     </NavigationContainer>
