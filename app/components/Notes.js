@@ -14,7 +14,7 @@ const Notes = ({item, onPress}) => {
   };
 
   return (
-    <TouchableOpacity onPress={onPress} style={[{backgroundColor:'#00000006'},styles.container]}>
+    <TouchableOpacity onPress={onPress} style={[{backgroundColor:'#00000009'},styles.container]}>
       <Text style={[{color:colors.text},styles.title]} numberOfLines={2}>
         {title}
       </Text>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     width: width / 2 - 10,
     padding: 12,
     borderRadius: 15,
-    borderBottomWidth:5,
+    borderBottomWidth:4,
     borderBottomColor:'teal',
   },
   title: {

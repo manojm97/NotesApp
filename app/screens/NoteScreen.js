@@ -80,9 +80,6 @@ const NoteScreen = ({navigation}) => {
   };
 
   let AnimatedHeaderValue = useRef(new Animated.Value(0)).current;
-
-  const Header_Max_Height = 200;
-  const Header_Min_Height = 100;
   
     const animatedHeaderHeight = AnimatedHeaderValue.interpolate({
          inputRange:[0,400],

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, ScrollView, Alert} from 'react-native';
+import {StyleSheet, View, TextInput, ScrollView, Alert} from 'react-native';
 import NoteButtons from './NoteButtons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNotes} from '../contexts/NoteProvider';
-import {TextInput} from 'react-native-gesture-handler';
+//import {TextInput} from 'react-native-gesture-handler';
 import SaveButton from './SaveButton';
 import { useTheme } from '@react-navigation/native';
 import colors from '../color/colors';
