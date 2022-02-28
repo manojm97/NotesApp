@@ -1,0 +1,16 @@
+export default {
+  DARK: '#1e1e1e',
+  LIGHT: '#FFF',
+  PRIMARY: 'teal',
+  ERROR: '#ff0000',
+  LIGHTWHITE: '#f5f5dc',
+  GREY: '#808080',
+  LIGHTGREY: '#c0c0c0',
+  CHIFFON: '#FBFAF2',
+  COTTON: '#FBFBF9',
+  VIVID: '#F8F8F4',
+  POWDER: '#F2F2F1',
+  SMOKE: '#E7EAEA',
+  GHOST: '#45646',
+  LIGHTBLACK: '#333333',
+};
